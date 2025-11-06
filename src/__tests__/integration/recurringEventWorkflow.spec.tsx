@@ -6,12 +6,12 @@ import { SnackbarProvider } from 'notistack';
 import { ReactElement } from 'react';
 import { describe, it, expect } from 'vitest';
 
+import App from '../../app/App';
 import {
   setupMockHandlerRecurringListDelete,
   setupMockHandlerRecurringListUpdate,
   setupMockHandlerUpdating,
-} from '../../__mocks__/handlersUtils';
-import App from '../../App';
+} from '../../shared/lib/mocks/handlersUtils';
 
 const theme = createTheme();
 

@@ -1,14 +1,14 @@
 import { act, renderHook } from '@testing-library/react';
 import { http, HttpResponse } from 'msw';
 
+import { useEventOperations } from '../../features/event-create/api/useEventOperations';
+import { server } from '../../setupTests.ts';
 import {
   setupMockHandlerCreation,
   setupMockHandlerDeletion,
   setupMockHandlerUpdating,
-} from '../../__mocks__/handlersUtils.ts';
-import { useEventOperations } from '../../hooks/useEventOperations.ts';
-import { server } from '../../setupTests.ts';
-import { Event } from '../../types.ts';
+} from '../../shared/lib/mocks/handlersUtils';
+import { Event } from '../../shared/types';
 
 const enqueueSnackbarFn = vi.fn();
 

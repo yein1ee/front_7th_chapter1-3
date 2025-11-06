@@ -6,9 +6,9 @@ import { http, HttpResponse } from 'msw';
 import { SnackbarProvider } from 'notistack';
 import { ReactElement } from 'react';
 
-import { setupMockHandlerListCreation } from '../../__mocks__/handlersUtils';
-import App from '../../App';
+import App from '../../app/App';
 import { server } from '../../setupTests';
+import { setupMockHandlerListCreation } from '../../shared/lib/mocks/handlersUtils';
 
 const theme = createTheme();
 

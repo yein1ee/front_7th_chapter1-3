@@ -1,5 +1,8 @@
-import { Event } from '../../types';
-import { createNotificationMessage, getUpcomingEvents } from '../../utils/notificationUtils';
+import {
+  createNotificationMessage,
+  getUpcomingEvents,
+} from '../../features/event-notification/model/notificationUtils';
+import { Event } from '../../shared/types';
 
 describe('getUpcomingEvents', () => {
   const events: Event[] = [

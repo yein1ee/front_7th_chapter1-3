@@ -6,15 +6,15 @@ import { http, HttpResponse } from 'msw';
 import { SnackbarProvider } from 'notistack';
 import { ReactElement } from 'react';
 
+import App from '../app/App';
+import { server } from '../setupTests';
 import {
   setupMockHandlerCreation,
   setupMockHandlerDeletion,
   setupMockHandlerUpdating,
   setupMockHandlerListCreation,
-} from '../__mocks__/handlersUtils';
-import App from '../App';
-import { server } from '../setupTests';
-import { Event, RepeatInfo } from '../types';
+} from '../shared/lib/mocks/handlersUtils';
+import { Event, RepeatInfo } from '../shared/types';
 
 const theme = createTheme();
 

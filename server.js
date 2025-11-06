@@ -14,7 +14,7 @@ app.use(express.json());
 const dbName = process.env.TEST_ENV === 'e2e' ? 'e2e.json' : 'realEvents.json';
 
 const getEvents = async () => {
-  const data = await readFile(`${__dirname}/src/__mocks__/response/${dbName}`, 'utf8');
+  const data = await readFile(`${__dirname}/src/shared/lib/mocks/response/${dbName}`, 'utf8');
 
   return JSON.parse(data);
 };
@@ -29,7 +29,7 @@ app.post('/api/events', async (req, res) => {
   const newEvent = { id: randomUUID(), ...req.body };
 
   fs.writeFileSync(
-    `${__dirname}/src/__mocks__/response/${dbName}`,
+    `${__dirname}/src/shared/lib/mocks/response/${dbName}`,
     JSON.stringify({
       events: [...events.events, newEvent],
     })
@@ -47,7 +47,7 @@ app.put('/api/events/:id', async (req, res) => {
     newEvents[eventIndex] = { ...events.events[eventIndex], ...req.body };
 
     fs.writeFileSync(
-      `${__dirname}/src/__mocks__/response/${dbName}`,
+      `${__dirname}/src/shared/lib/mocks/response/${dbName}`,
       JSON.stringify({
         events: newEvents,
       })
@@ -64,7 +64,7 @@ app.delete('/api/events/:id', async (req, res) => {
   const id = req.params.id;
 
   fs.writeFileSync(
-    `${__dirname}/src/__mocks__/response/${dbName}`,
+    `${__dirname}/src/shared/lib/mocks/response/${dbName}`,
     JSON.stringify({
       events: events.events.filter((event) => event.id !== id),
     })
@@ -89,7 +89,7 @@ app.post('/api/events-list', async (req, res) => {
   });
 
   fs.writeFileSync(
-    `${__dirname}/src/__mocks__/response/${dbName}`,
+    `${__dirname}/src/shared/lib/mocks/response/${dbName}`,
     JSON.stringify({
       events: [...events.events, ...newEvents],
     })
@@ -113,7 +113,7 @@ app.put('/api/events-list', async (req, res) => {
 
   if (isUpdated) {
     fs.writeFileSync(
-      `${__dirname}/src/__mocks__/response/${dbName}`,
+      `${__dirname}/src/shared/lib/mocks/response/${dbName}`,
       JSON.stringify({
         events: newEvents,
       })
@@ -130,7 +130,7 @@ app.delete('/api/events-list', async (req, res) => {
   const newEvents = events.events.filter((event) => !req.body.eventIds.includes(event.id)); // ? ids를 전달하면 해당 아이디를 기준으로 events에서 제거
 
   fs.writeFileSync(
-    `${__dirname}/src/__mocks__/response/${dbName}`,
+    `${__dirname}/src/shared/lib/mocks/response/${dbName}`,
     JSON.stringify({
       events: newEvents,
     })
@@ -166,7 +166,7 @@ app.put('/api/recurring-events/:repeatId', async (req, res) => {
   });
 
   fs.writeFileSync(
-    `${__dirname}/src/__mocks__/response/${dbName}`,
+    `${__dirname}/src/shared/lib/mocks/response/${dbName}`,
     JSON.stringify({ events: newEvents })
   );
 
@@ -184,7 +184,7 @@ app.delete('/api/recurring-events/:repeatId', async (req, res) => {
   }
 
   fs.writeFileSync(
-    `${__dirname}/src/__mocks__/response/${dbName}`,
+    `${__dirname}/src/shared/lib/mocks/response/${dbName}`,
     JSON.stringify({ events: remainingEvents })
   );
 
@@ -192,9 +192,9 @@ app.delete('/api/recurring-events/:repeatId', async (req, res) => {
 });
 
 app.listen(port, () => {
-  if (!fs.existsSync(`${__dirname}/src/__mocks__/response/${dbName}`)) {
+  if (!fs.existsSync(`${__dirname}/src/shared/lib/mocks/response/${dbName}`)) {
     fs.writeFileSync(
-      `${__dirname}/src/__mocks__/response/${dbName}`,
+      `${__dirname}/src/shared/lib/mocks/response/${dbName}`,
       JSON.stringify({
         events: [],
       })

@@ -1,8 +1,8 @@
 import { act, renderHook } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-import { useRecurringEventOperations } from '../../hooks/useRecurringEventOperations';
-import { Event } from '../../types';
+import { useRecurringEventOperations } from '../../features/recurring-event-edit/api/useRecurringEventOperations';
+import { Event } from '../../shared/types';
 
 const mockEvents: Event[] = [
   {

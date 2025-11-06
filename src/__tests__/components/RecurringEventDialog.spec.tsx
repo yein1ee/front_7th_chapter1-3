@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
-import RecurringEventDialog from '../../components/RecurringEventDialog';
-import { Event } from '../../types';
+import { Event } from '../../shared/types';
+import RecurringEventDialog from '../../shared/ui/RecurringEventDialog';
 
 const mockEvent: Event = {
   id: '1',
